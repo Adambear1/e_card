@@ -52,13 +52,54 @@ module.exports = (app) => {
     }
   );
   // oauth => linkedin
-  app.get(
-    "/auth/linkedin",
-    passport.authenticate("linkedin", { scope: ["profile", "email"] })
-  );
+  app.get("/auth/linkedin", passport.authenticate("linkedin"));
   app.get(
     "/linkedin/callback",
     passport.authenticate("linkedin", {
+      failureRedirect: "/failed",
+    }),
+    (req, res) => {
+      res.redirect("/dashboard.html");
+    }
+  );
+  // oauth => spotify
+  app.get("/auth/spotify", passport.authenticate("spotify"));
+  app.get(
+    "/spotify/callback",
+    passport.authenticate("spotify", {
+      failureRedirect: "/failed",
+    }),
+    (req, res) => {
+      res.redirect("/dashboard.html");
+    }
+  );
+  // oauth => yahoo
+  // app.get("/auth/yahoo", passport.authenticate("yahoo"));
+  // app.get(
+  //   "/yahoo/callback",
+  //   passport.authenticate("yahoo", {
+  //     failureRedirect: "/failed",
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/dashboard.html");
+  //   }
+  // );
+  // oauth => tumblr
+  // app.get("/auth/tumblr", passport.authenticate("tumblr"));
+  // app.get(
+  //   "/tumblr/callback",
+  //   passport.authenticate("tumblr", {
+  //     failureRedirect: "/failed",
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/dashboard.html");
+  //   }
+  // );
+  // oauth => slack
+  app.get("/auth/slack", passport.authenticate("slack"));
+  app.get(
+    "/slack/callback",
+    passport.authenticate("slack", {
       failureRedirect: "/failed",
     }),
     (req, res) => {
