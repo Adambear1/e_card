@@ -1,8 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("click", function () {
   fetch("/api/dashboard")
-    .then((res) => {
-      const data = res.json();
-      console.log(data);
-    })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
     .catch((err) => console.error(err));
 });
