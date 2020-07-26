@@ -11,7 +11,6 @@ app.use(express.static("./public"));
 // Passport Init
 app.use(require("passport").initialize());
 app.use(require("passport").session());
-
 require("passport").serializeUser((user, done) => {
   done(null, user);
 });
@@ -25,6 +24,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+// DB Connect
+require("./config/db")();
 // MW
 app.use(require("morgan")("combined"));
 app.use(require("cookie-parser")());
@@ -36,11 +37,12 @@ app.use(
     saveUninitialized: true,
   })
 );
-// Routes
-// require("./middlewear/middlewear.js")(app);
+// Server Routes
 require("./routes/oauthRoutes")(app);
 require("./routes/html-routes")(app);
-require("./routes/apiRoutes")(app);
+// API Routes
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/user", require("./routes/api/user"));
 
 app.listen(PORT, () => {
   console.log("Listening on PORT  " + PORT);
