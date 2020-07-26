@@ -19,17 +19,26 @@ router.post(
       res.status(400).send("Password Must Be Greater Than 6 Characters");
     }
     body.password = await bcrypt.hash(body.password, salt);
+    // items
+    // items => name
     body.name === undefined
-      ? (body.name = "###")
-      : //    (body.name = await bcrypt.hashSync(body.name, salt));
-        (body.name = await cryptr.encrypt(body.name));
+      ? (body.name = "#")
+      : (body.name = await cryptr.encrypt(body.name));
+    //   items => website
     body.website === undefined
-      ? (body.website = "###")
-      : //   (body.website = await bcrypt.hash(body.website, salt));
-        (body.website = await cryptr.encrypt(body.website));
-
-    const items = `${body.name}#${body.website}`;
-    const hashItems = `${body.password}###${items}`;
+      ? (body.website = "#")
+      : (body.website = await cryptr.encrypt(body.website));
+    // items => occupation
+    body.occupation === undefined
+      ? (body.occupation = "#")
+      : (body.occupation = await cryptr.encrypt(body.occupation));
+    //   items => location
+    body.location == undefined
+      ? (body.location = "#")
+      : (body.location = await cryptr.encrypt(body.location));
+    //   concatinating hashes
+    const items = `${body.name}#${body.website}#${body.occupation}#${body.location}`;
+    const hashItems = `${body.password}#${items}`;
 
     db.User.create({ email: body.email, info: hashItems })
       .then((result) => {
