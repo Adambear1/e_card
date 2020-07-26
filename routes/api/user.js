@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../models");
 const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
-const { check, validationResult } = require("express-validator");
+const Cryptr = require("cryptr");
+cryptr = new Cryptr("devnami");
+
+const { check } = require("express-validator");
 
 router.post(
   "/",
@@ -19,10 +21,12 @@ router.post(
     body.password = await bcrypt.hash(body.password, salt);
     body.name === undefined
       ? (body.name = "###")
-      : (body.name = await bcrypt.hashSync(body.name, salt));
+      : //    (body.name = await bcrypt.hashSync(body.name, salt));
+        (body.name = await cryptr.encrypt(body.name));
     body.website === undefined
       ? (body.website = "###")
-      : (body.website = await bcrypt.hash(body.website, salt));
+      : //   (body.website = await bcrypt.hash(body.website, salt));
+        (body.website = await cryptr.encrypt(body.website));
 
     const items = `${body.name}#${body.website}`;
     const hashItems = `${body.password}###${items}`;
