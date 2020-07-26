@@ -19,6 +19,7 @@ module.exports = (app) => {
     return done(null, profile);
   };
   passport.use(new FacebookStrategy(FBOptions, FBCallback));
+
   //   Github
   const GHOptions = {
     clientID: process.env.GH_APP_ID,

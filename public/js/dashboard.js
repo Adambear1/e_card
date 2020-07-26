@@ -1,6 +1,7 @@
-document.addEventListener("click", function () {
-  fetch("/api/dashboard")
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.error(err));
-});
+function setup() {
+  createCanvas(400, 400);
+  background(51);
+  loadJSON("/api/dashboard");
+}
+
+load();

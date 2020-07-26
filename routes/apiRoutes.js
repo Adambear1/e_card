@@ -1,10 +1,9 @@
-module.exports = (app) => {
-  app.get("/api/dashboard", (req, res) => {
-    try {
-      res.send(req);
-    } catch (err) {
-      res.send(err);
-      console.error(err);
-    }
-  });
-};
+const express = require("express");
+const router = express.Router();
+const User = require("../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
+const { check, validationResult } = require("express-validator/check");
+
+router.get("/", auth);

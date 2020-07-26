@@ -37,8 +37,9 @@ app.use(
   })
 );
 // Routes
+// require("./middlewear/middlewear.js")(app);
 require("./routes/oauthRoutes")(app);
-require("./routes/serverRoutes")(app);
+require("./routes/html-routes")(app);
 require("./routes/apiRoutes")(app);
 
 app.listen(PORT, () => {
