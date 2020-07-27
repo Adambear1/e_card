@@ -16,63 +16,51 @@ module.exports = (app) => {
   });
   // oauth
   // oauth => facebook
-  app.get("/auth/facebook", passport.authenticate("facebook"));
-  app.get(
-    "/facebook/callback",
-    passport.authenticate("facebook", {
-      failureRedirect: "/failed",
-    }),
-    (req, res) => {
-      res.redirect("/dashboard.html");
-    }
-  );
+  // app.get("/auth/facebook", passport.authenticate("facebook"));
+  // app.get(
+  //   "/facebook/callback",
+  //   passport.authenticate("facebook", {
+  //     failureRedirect: "/failed",
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/dashboard.html");
+  //   }
+  // );
   // oauth => github
-  app.get("/auth/github", passport.authenticate("github"));
-  app.get(
-    "/github/callback",
-    passport.authenticate("github", {
-      failureRedirect: "/failed",
-    }),
-    (req, res) => {
-      res.redirect("/dashboard.html");
-    }
-  );
+  // app.get("/auth/github", passport.authenticate("github"));
+  // app.get(
+  //   "/github/callback",
+  //   passport.authenticate("github", {
+  //     failureRedirect: "/failed",
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/dashboard.html");
+  //   }
+  // );
   // oauth => google
-  app.get(
-    "/auth/google",
-    passport.authenticate("google", { scope: ["profile", "email"] })
-  );
-  app.get(
-    "/google/callback",
-    passport.authenticate("google", {
-      failureRedirect: "/failed",
-    }),
-    (req, res) => {
-      res.redirect("/dashboard.html");
-    }
-  );
+
   // oauth => linkedin
-  app.get("/auth/linkedin", passport.authenticate("linkedin"));
-  app.get(
-    "/linkedin/callback",
-    passport.authenticate("linkedin", {
-      failureRedirect: "/failed",
-    }),
-    (req, res) => {
-      res.redirect("/dashboard.html");
-    }
-  );
+  // app.get("/auth/linkedin", passport.authenticate("linkedin"));
+  // app.get(
+  //   "/linkedin/callback",
+  //   passport.authenticate("linkedin", {
+  //     failureRedirect: "/failed",
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/dashboard.html");
+  //   }
+  // );
   // oauth => spotify
-  app.get("/auth/spotify", passport.authenticate("spotify"));
-  app.get(
-    "/spotify/callback",
-    passport.authenticate("spotify", {
-      failureRedirect: "/failed",
-    }),
-    (req, res) => {
-      res.redirect("/dashboard.html");
-    }
-  );
+  // app.get("/auth/spotify", passport.authenticate("spotify"));
+  // app.get(
+  //   "/spotify/callback",
+  //   passport.authenticate("spotify", {
+  //     failureRedirect: "/failed",
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/dashboard.html");
+  //   }
+  // );
   // oauth => yahoo
   // app.get("/auth/yahoo", passport.authenticate("yahoo"));
   // app.get(
@@ -96,14 +84,17 @@ module.exports = (app) => {
   //   }
   // );
   // oauth => slack
-  app.get("/auth/slack", passport.authenticate("slack"));
-  app.get(
-    "/slack/callback",
-    passport.authenticate("slack", {
-      failureRedirect: "/failed",
-    }),
-    (req, res) => {
-      res.redirect("/dashboard.html");
-    }
-  );
+  // app.get("/auth/slack", passport.authenticate("slack"));
+  // app.get(
+  //   "/slack/callback",
+  //   passport.authenticate("slack", {
+  //     failureRedirect: "/failed",
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/dashboard.html");
+  //   }
+  // );
+  app.get("/api/dashboard", (req, res) => {
+    res.json(req.user);
+  });
 };

@@ -1,7 +1,1 @@
-function setup() {
-  createCanvas(400, 400);
-  background(51);
-  loadJSON("/api/dashboard");
-}
-
-load();
+fetch("/api/dashboard").then((response) => console.log(response));

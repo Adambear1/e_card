@@ -9,21 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("./public"));
 // Passport Init
-app.use(require("passport").initialize());
-app.use(require("passport").session());
-require("passport").serializeUser((user, done) => {
-  done(null, user);
-});
-require("passport").deserializeUser((user, done) => {
-  done(null, user);
-});
-app.use(
-  require("express-session")({
-    secret: "eCard",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+
 // DB Connect
 require("./config/db")();
 // MW
@@ -43,6 +29,8 @@ require("./routes/html-routes")(app);
 // API Routes
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/user", require("./routes/api/user"));
+// axios
+require("axios");
 
 app.listen(PORT, () => {
   console.log("Listening on PORT  " + PORT);

@@ -20,24 +20,11 @@ router.post(
     }
     body.password = await bcrypt.hash(body.password, salt);
     // items
-    // items => name
-    body.name === undefined
-      ? (body.name = "#")
-      : (body.name = await cryptr.encrypt(body.name));
-    //   items => website
-    body.website === undefined
-      ? (body.website = "#")
-      : (body.website = await cryptr.encrypt(body.website));
-    // items => occupation
-    body.occupation === undefined
-      ? (body.occupation = "#")
-      : (body.occupation = await cryptr.encrypt(body.occupation));
-    //   items => location
-    body.location == undefined
-      ? (body.location = "#")
-      : (body.location = await cryptr.encrypt(body.location));
-    //   concatinating hashes
-    const items = `${body.name}#${body.website}#${body.occupation}#${body.location}`;
+    body.info === undefined
+      ? (body.info = "[]")
+      : (body.info = await cryptr.encrypt(body.info));
+    //   Hash Items
+    const items = `${body.info}`;
     const hashItems = `${body.password}#${items}`;
 
     db.User.create({ email: body.email, info: hashItems })
