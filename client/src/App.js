@@ -1,9 +1,10 @@
 import React from "react";
+import Index from "./pages/Index";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">works</header>
+      <Index />
     </div>
   );
 }
