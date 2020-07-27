@@ -7,9 +7,6 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static("./public"));
-// Passport Init
-
 // DB Connect
 require("./config/db")();
 // MW
@@ -24,13 +21,13 @@ app.use(
   })
 );
 // Server Routes
-require("./routes/oauthRoutes")(app);
+require("./routes/oauthRoutes/_passportinit")(app);
+require("./routes/oauthRoutes/google_oauth")(app);
+require("./routes/oauthRoutes/facebook_oauth")(app);
 require("./routes/html-routes")(app);
 // API Routes
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/user", require("./routes/api/user"));
-// axios
-require("axios");
 
 app.listen(PORT, () => {
   console.log("Listening on PORT  " + PORT);
