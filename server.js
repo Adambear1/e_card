@@ -20,12 +20,15 @@ app.use(
     saveUninitialized: true,
   })
 );
+// Use Public
+app.use(express.static("./public"));
 // Server Routes
 require("./routes/oauthRoutes/_passportinit")(app);
 require("./routes/oauthRoutes/google_oauth")(app);
 require("./routes/oauthRoutes/facebook_oauth")(app);
 require("./routes/html-routes")(app);
 // API Routes
+app.use("/api/share", require("./routes/api/share"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/user", require("./routes/api/user"));
 

@@ -28,6 +28,7 @@
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.0",
     "concurrently": "^5.2.0",
     "cookie-parser": "^1.4.5",
     "create-react-app": "^3.4.1",
@@ -43,6 +44,7 @@
     "mongoose": "^5.9.25",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "react-bootstrap": "^0.32.4"
   }
 }

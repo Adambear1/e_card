@@ -5,9 +5,11 @@ const bcrypt = require("bcryptjs");
 const Cryptr = require("cryptr");
 cryptr = new Cryptr("devnami");
 
-router.get("/", ({ body }, res) => {
+router.post("/", ({ body }, res) => {
+  // Get To Edit Data On Front End
   db.User.findOne({ email: body.email })
     .then(async (data) => {
+      console.log(data);
       const password = await data.info.split("#")[0];
       await bcrypt.compare(body.password, password, async (err, bool) => {
         if (err) {
