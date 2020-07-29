@@ -9,19 +9,17 @@
     <div id="qrcode"></div>
     <script src="./js/share.js"></script>
     <script src="./utils/qrcode.js"></script>
-    <script>
-      const email = sessionStorage.getItem("email");
-      const password = sessionStorage.getItem("password");
-      const qrcode = new QRCode("output", {
-        text: email,
-        width: 256,
-        height: 256,
-        colorDark: "#990000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H,
-      });
-
-      document.getElementById("#qrcode").innerHTML = qrcode;
-    </script>
   </body>
+  <script>
+    const email = sessionStorage.getItem("email");
+    const password = sessionStorage.getItem("password");
+    const qrcode = new QRCode("qrcode", {
+      text: "http://localhost5000:/api/share/" + email,
+      width: 256,
+      height: 256,
+      colorDark: "#990000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+  </script>
 </html>
